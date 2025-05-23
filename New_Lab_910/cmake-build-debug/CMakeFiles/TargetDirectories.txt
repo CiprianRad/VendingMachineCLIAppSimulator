@@ -1,0 +1,3 @@
+C:/Users/cipri/CLionProjects/New_Lab_910/cmake-build-debug/CMakeFiles/New_Lab_910.dir
+C:/Users/cipri/CLionProjects/New_Lab_910/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/cipri/CLionProjects/New_Lab_910/cmake-build-debug/CMakeFiles/rebuild_cache.dir

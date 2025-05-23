@@ -1,0 +1,10 @@
+A1 Chips 5
+A2 Soda 6
+A3 Chocolate 7
+B1 Water 4
+B2 Juice 6
+C1 Sandwich 10
+C2 Gum 2
+C3 Cookies 5
+D1 Candy 3
+D2 Nuts 7
