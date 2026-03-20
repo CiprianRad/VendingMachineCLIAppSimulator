@@ -1,8 +1,8 @@
 # C++ Vending Machine Simulator
 
-A fully functional, console-based Vending Machine simulator written in C++. Built with a robust Layered Object-Oriented Architecture (Domain, Repository, Service, Controller, UI), this project demonstrates clean code practices, memory management using smart pointers, robust exception handling, and comprehensive unit testing.
+A fully functional, console-based Vending Machine simulator written in C++.
 
-## 🚀 Features
+## Features
 
 * **File-Based Persistence**: Loads products, their quantities, and the machine's initial cash float (banknotes) directly from `.txt` files.
 * **Dynamic Inventory Management**: Tracks the exact quantity of each product. Prevents purchasing if an item is out of stock.
@@ -11,7 +11,7 @@ A fully functional, console-based Vending Machine simulator written in C++. Buil
 * **Robust Error Handling**: Custom exception classes handle edge cases like insufficient funds, out-of-stock items, invalid inputs, and missing files.
 * **Comprehensive Test Suite**: Includes automated unit tests for Repositories, Services, and Controllers to ensure reliability.
 
-## 🏗️ Architecture
+## Architecture
 
 The application is structured using a strict layered architecture:
 
@@ -21,7 +21,7 @@ The application is structured using a strict layered architecture:
 * **Controller Layer (`VendingMachineController`)**: Manages the machine's state, tracking the physical inventory quantities and the available banknotes. Handles the complex logic of purchasing and calculating change.
 * **UI Layer (`VendingMachineUI`)**: A console-based interface that interacts with the user and delegates commands to the Controller.
 
-## 🛠️ Build & Run Instructions
+## Build & Run Instructions
 
 This project requires a modern C++ compiler (C++17 or higher recommended due to the use of structured bindings and smart pointers).
 
@@ -49,7 +49,7 @@ Run the compiled executable:
 ./VendingMachine
 \`\`\`
 
-## 🎮 How to Use
+## How to Use
 
 Upon running the application, you will see the main menu:
 
@@ -68,7 +68,7 @@ Upon running the application, you will see the main menu:
 4. **Get change**: Cancels your transaction and returns your deposited money.
 5. **Exit**: Closes the application (automatically returning any unspent balance).
 
-## 🧪 Testing
+## Testing
 
 The project includes built-in test suites that run automatically when the application starts. These cover:
 
