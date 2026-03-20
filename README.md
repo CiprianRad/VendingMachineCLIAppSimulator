@@ -53,14 +53,14 @@ Run the compiled executable:
 
 Upon running the application, you will see the main menu:
 
-\`\`\`text
+```text
 === Vending Machine ===
 1. View products
 2. Deposit money
 3. Buy product
 4. Get change
 0. Exit
-\`\`\`
+```
 
 1. **View products**: Displays all available items, their prices, and current stock.
 2. **Deposit money**: Insert cash into the machine. The machine tracks this as your virtual balance.
