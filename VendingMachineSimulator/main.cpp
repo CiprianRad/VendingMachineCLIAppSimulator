@@ -27,22 +27,16 @@ int main() {
     std::cout << product2.getName() << std::endl;
     std::cout << product2.getPrice() << std::endl;
     try {
-        // Initialize validator
         auto validator = std::make_shared<domain::GenericProductValidator>();
 
-
-        // Create repository with validator and product file
         auto productRepo = std::make_shared<repository::FileRepository>(
             "products.txt", validator
         );
 
-        // Create service with the repository
         auto service = std::make_shared<service::VendingMachineService>(productRepo);
 
-        // Empty inventory, will be loaded from file in controller
         std::unordered_map<std::string, int> initialInventory;
 
-        // Create controller with service, inventory, banknotes file and quantities file
         auto controller = std::make_shared<controller::VendingMachineController>(
             service,
             initialInventory,
@@ -50,7 +44,6 @@ int main() {
             "quantities.txt"
         );
 
-        // Start the UI
         ui::VendingMachineUI ui(controller);
         ui.run();
 
