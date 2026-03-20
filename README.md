@@ -8,7 +8,7 @@ A fully functional, console-based Vending Machine simulator written in C++.
 * **Dynamic Inventory Management**: Tracks the exact quantity of each product. Prevents purchasing if an item is out of stock.
 * **Intelligent Change Calculation**: Automatically calculates the exact change to return to the user using a greedy algorithm, prioritizing the largest available denominations.
 * **Virtual Credit System**: Users can deposit multiple banknotes to build a "virtual balance" before making a purchase.
-* **Robust Error Handling**: Custom exception classes handle edge cases like insufficient funds, out-of-stock items, invalid inputs, and missing files.
+* **Error Handling**: Custom exception classes handle edge cases like insufficient funds, out-of-stock items, invalid inputs, and missing files.
 * **Comprehensive Test Suite**: Includes automated unit tests for Repositories, Services, and Controllers to ensure reliability.
 
 ## Architecture
