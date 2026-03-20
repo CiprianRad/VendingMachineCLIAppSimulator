@@ -11,22 +11,7 @@
 #include <fstream>
 
 namespace repository {
-    // class FileRepository : public InMemoryRepository {
-    // private:
-    //     std::string fileName;
-    //     std::shared_ptr<domain::ProductValidator> validator;
-    //     bool isLoading = false;
-    //     void loadData();
-    //     void saveData();
-    //
-    // public:
-    //     explicit FileRepository(std::string fileName, std::shared_ptr<domain::ProductValidator> validator) : fileName(fileName), InMemoryRepository(validator) {loadData();}
-    //     void add(std::shared_ptr<domain::Product> product) override;
-    //     void update(const std::string &key, std::shared_ptr<domain::Product> product) override;
-    //     void remove(const std::string &key) override;
-    //     [[nodiscard]] std::vector<std::shared_ptr<domain::Product>> getAll() const override;
-    //     std::shared_ptr<domain::Product> findById(const std::string &key) const override;
-    // };
+
 
     class FileRepository : public InMemoryRepository {
     private:
@@ -39,8 +24,6 @@ namespace repository {
 
         void loadData();
         void saveData();
-
-        // std::unordered_map<std::string, int> loadProductQuantities();
 
         void add(std::shared_ptr<domain::Product> product) override;
         void remove(const std::string& key) override;

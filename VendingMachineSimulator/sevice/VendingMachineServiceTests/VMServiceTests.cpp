@@ -45,7 +45,7 @@ void testBuyProductNotFound() {
 
     bool exceptionThrown = false;
     try {
-        service.buyProduct("Z9"); // product doesn't exist
+        service.buyProduct("Z9");
     } catch (const repository::ProductNotFoundException& e) {
         exceptionThrown = true;
     }
@@ -62,14 +62,13 @@ void testRestockProductDuplicate() {
 
     bool exceptionThrown = false;
     try {
-        service.restockProduct(product); // Adding duplicate
+        service.restockProduct(product);
     } catch (const repository::ProductAlreadyExistsException& e) {
         exceptionThrown = true;
     }
     assert(exceptionThrown);
 }
 
-// New tests for the added service methods:
 
 void testGetProductById() {
     auto validator = std::make_shared<domain::GenericProductValidator>();
@@ -111,7 +110,7 @@ void testGetProductPrice() {
 
     bool exceptionThrown = false;
     try {
-        service.getProductPrice("Z9");  // non-existing product
+        service.getProductPrice("Z9");
     } catch (const repository::ProductNotFoundException& e) {
         exceptionThrown = true;
     }

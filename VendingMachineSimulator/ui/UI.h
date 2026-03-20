@@ -118,9 +118,7 @@ namespace ui {
             }
         }
 
-        // Optional: call this if you want to implement saving inventory/banknotes later
         void saveState() {
-            // Placeholder: implement if needed
         }
 
     public:

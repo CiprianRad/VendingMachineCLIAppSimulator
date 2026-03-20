@@ -78,6 +78,6 @@ namespace controller {
             : VendingMachineException("Quantity must be non-negative.") {}
     };
 
-} // namespace controller
+}
 
 #endif //VMCONTROLLEREXCEPTIONS_H

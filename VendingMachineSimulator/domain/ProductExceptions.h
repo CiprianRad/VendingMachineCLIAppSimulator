@@ -35,23 +35,6 @@ namespace domain {
     };
 }
 
-// class ProductNotFoundException : public ProductException {
-// private:
-//     std::string message;
-// public:
-//     explicit ProductNotFoundException(std::string message) : ProductException(std::move(message)) {};
-//     ~ProductNotFoundException() override = default;
-//     [[nodiscard]] const char* what() const noexcept override {return message.c_str();};
-// };
-//
-// class ProductAlreadyExistsException : public ProductException {
-// private:
-//     std::string message;
-// public:
-//     explicit ProductAlreadyExistsException(std::string message) : ProductException(std::move(message)) {};
-//     ~ProductAlreadyExistsException() override = default;
-//     [[nodiscard]] const char* what() const noexcept override {return message.c_str();};
-// };
 
 
 #endif //VALIDATORS_H

@@ -8,7 +8,6 @@
 #include <memory>
 #include <iostream>
 
-// Helper functions to create and delete test files
 void createTestProductsFile(const std::string& filename) {
     std::ofstream out(filename);
     out << "T1 Cola 6\n";
@@ -40,7 +39,6 @@ void createTestQuantitiesFile(const std::string& filename) {
         throw std::runtime_error("Failed to create test quantities file: " + filename);
     }
 
-    // Example test quantities
     out << "T1 5\n";
     out << "T2 3\n";
     out << "T3 0\n";
@@ -48,34 +46,6 @@ void createTestQuantitiesFile(const std::string& filename) {
     out.close();
 }
 
-
-// void testLoadBanknotes() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {}, "test_banknotes.txt");
-//
-//     auto banknotes = controller.getBanknotes();
-//     assert(banknotes.size() == 2);
-// }
-
-// void testLoadBanknotes() {
-//     const std::string banknotesFile = "test_banknotes.txt";
-//     createTestBanknotesFile(banknotesFile);
-//
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     createTestProductsFile("test_products.txt");
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//
-//     controller::VendingMachineController controller(service, {}, banknotesFile);
-//
-//     auto banknotes = controller.getBanknotes();
-//     assert(banknotes.size() == 2);
-//
-//     deleteFile(banknotesFile);
-//     deleteFile("test_products.txt");
-// }
 
 
 void testLoadBanknotes() {
@@ -105,24 +75,6 @@ void testLoadBanknotes() {
 
 
 
-//
-// void testSetProductQuantity() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {}, "test_banknotes.txt");
-//
-//     controller.setProductQuantity("T1", 2);
-//     assert(controller.getProductQuantity("T1") == 2);
-//
-//     try {
-//         controller.setProductQuantity("T2", -1);
-//         assert(false);
-//     } catch (const controller::NegativeQuantitySetException&) {
-//         assert(true);
-//     }
-// }
-
 void testSetAndGetProductQuantity() {
     createTestProductsFile("test_products.txt");
     createTestBanknotesFile("test_banknotes.txt");
@@ -149,146 +101,6 @@ void testSetAndGetProductQuantity() {
     deleteFile("test_quantities.txt");
 }
 
-
-// void testSetAndGetProductQuantity() {
-//     createTestProductsFile("test_products.txt");
-//     createTestBanknotesFile("test_banknotes.txt");
-//
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//
-//     controller::VendingMachineController controller(service, {}, "test_banknotes.txt");
-//
-//     controller.setProductQuantity("T1", 5);
-//     assert(controller.getProductQuantity("T1") == 5);
-//
-//     try {
-//         controller.setProductQuantity("T2", -1);
-//         assert(false);  // Should throw, so fail if we reach here
-//     } catch (const controller::NegativeQuantitySetException&) {
-//         assert(true);
-//     }
-//
-//     deleteFile("test_products.txt");
-//     deleteFile("test_banknotes.txt");
-// }
-
-
-
-
-// void testRestockProduct() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {}, "test_banknotes.txt");
-//
-//     auto product = std::make_shared<domain::GenericProduct>("T1", "Cola", 6);
-//     controller.restockProduct(product, 3);
-//     assert(controller.getProductQuantity("T1") == 3);
-//
-//     try {
-//         controller.restockProduct(product, 0);
-//         assert(false);
-//     } catch (const controller::InvalidQuantityException&) {
-//         assert(true);
-//     }
-// }
-//
-// void testBuyProductSuccessAndChange() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {{"T1", 1}}, "test_banknotes.txt");
-//
-//     auto change = controller.buyProduct("T1", 10);
-//     assert(!change.empty());
-//     assert(controller.getProductQuantity("T1") == 0);
-// }
-//
-// void testOutOfStock() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {{"T3", 0}}, "test_banknotes.txt");
-//
-//     try {
-//         controller.buyProduct("T3", 5);
-//         assert(false);
-//     } catch (const controller::OutOfStockException&) {
-//         assert(true);
-//     }
-// }
-//
-// void testProductUnavailable() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     repo->remove("T2");
-//
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {{"T2", 1}}, "test_banknotes.txt");
-//
-//     try {
-//         controller.buyProduct("T2", 10);
-//         assert(false);
-//     } catch (const controller::ProductUnavailableException&) {
-//         assert(true);
-//     }
-// }
-//
-// void testInsufficientPayment() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//     controller::VendingMachineController controller(service, {{"T1", 1}}, "test_banknotes.txt");
-//
-//     try {
-//         controller.buyProduct("T1", 1);
-//         assert(false);
-//     } catch (const controller::InsufficientPaymentException&) {
-//         assert(true);
-//     }
-// }
-//
-// void testInvalidBanknotesFile() {
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//
-//     try {
-//         controller::VendingMachineController controller(service, {}, "test_invalid_banknotes.txt");
-//         assert(false);
-//     } catch (const controller::InvalidBanknoteFormatException&) {
-//         assert(true);
-//     }
-// }
-
-
-// void testRestockProduct() {
-//     createTestProductsFile("test_products.txt");
-//     createTestBanknotesFile("test_banknotes.txt");
-//
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//
-//     controller::VendingMachineController controller(service, { {"T1", 2} }, "test_banknotes.txt");
-//
-//     auto product = std::make_shared<domain::GenericProduct>("T1", "Cola", 6);
-//
-//     controller.restockProduct(product, 3);
-//     assert(controller.getProductQuantity("T1") == 5);
-//
-//     try {
-//         controller.restockProduct(product, 0);
-//         assert(false);
-//     } catch (const controller::InvalidQuantityException&) {
-//         assert(true);
-//     }
-//
-//     deleteFile("test_products.txt");
-//     deleteFile("test_banknotes.txt");
-// }
 
 void testRestockProduct() {
     createTestProductsFile("test_products.txt");
@@ -319,51 +131,6 @@ void testRestockProduct() {
 }
 
 
-// void testBuyProductAndExceptions() {
-//     createTestProductsFile("test_products.txt");
-//     createTestBanknotesFile("test_banknotes.txt");
-//
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//
-//     controller::VendingMachineController controller(service, { {"T1", 2}, {"T3", 0}, {"T2", 1} }, "test_banknotes.txt");
-//
-//     // Successful purchase
-//     auto change = controller.buyProduct("T1", 10);
-//     assert(!change.empty());
-//     assert(controller.getProductQuantity("T1") == 1);
-//
-//     // Out of stock exception
-//     try {
-//         controller.buyProduct("T3", 5);
-//         assert(false);
-//     } catch (const controller::OutOfStockException&) {
-//         assert(true);
-//     }
-//
-//     // Product unavailable exception (simulate by removing from repo)
-//     repo->remove("T2");
-//     try {
-//         controller.buyProduct("T2", 10);
-//         assert(false);
-//     } catch (const controller::ProductUnavailableException&) {
-//         assert(true);
-//     }
-//
-//     // Insufficient payment exception
-//     controller.setProductQuantity("T1", 1);
-//     try {
-//         controller.buyProduct("T1", 1);  // price is 6, paid less
-//         assert(false);
-//     } catch (const controller::InsufficientPaymentException&) {
-//         assert(true);
-//     }
-//
-//     deleteFile("test_products.txt");
-//     deleteFile("test_banknotes.txt");
-// }
-
 void testBuyProductAndExceptions() {
     createTestProductsFile("test_products.txt");
     createTestBanknotesFile("test_banknotes.txt");
@@ -373,7 +140,6 @@ void testBuyProductAndExceptions() {
     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
     auto service = std::make_shared<service::VendingMachineService>(repo);
 
-    // Don't pass an inventory map – it's overridden anyway
     controller::VendingMachineController controller(service, {}, "test_banknotes.txt", "test_quantities.txt");
 
     // T1 has 5 in quantities file; after one purchase, it should have 4
@@ -389,7 +155,6 @@ void testBuyProductAndExceptions() {
         assert(true);
     }
 
-    // Remove T2 from the repo
     repo->remove("T2");
     try {
         controller.buyProduct("T2", 10);
@@ -401,7 +166,7 @@ void testBuyProductAndExceptions() {
     // T1 price is 6; this should throw for insufficient payment
     controller.setProductQuantity("T1", 1);
     try {
-        controller.buyProduct("T1", 1);  // Price is 6, paid only 1
+        controller.buyProduct("T1", 1);
         assert(false);
     } catch (const controller::InsufficientPaymentException&) {
         assert(true);
@@ -413,25 +178,6 @@ void testBuyProductAndExceptions() {
 }
 
 
-// void testInvalidBanknotesFile() {
-//     const std::string invalidFile = "test_invalid_banknotes.txt";
-//     createInvalidBanknotesFile(invalidFile);
-//
-//     auto validator = std::make_shared<domain::GenericProductValidator>();
-//     createTestProductsFile("test_products.txt");
-//     auto repo = std::make_shared<repository::FileRepository>("test_products.txt", validator);
-//     auto service = std::make_shared<service::VendingMachineService>(repo);
-//
-//     try {
-//         controller::VendingMachineController controller(service, {}, invalidFile);
-//         assert(false);  // Should throw
-//     } catch (const controller::InvalidBanknoteFormatException&) {
-//         assert(true);
-//     }
-//
-//     deleteFile(invalidFile);
-//     deleteFile("test_products.txt");
-// }
 
 void testInvalidBanknotesFile() {
     const std::string invalidFile = "test_invalid_banknotes.txt";
@@ -455,8 +201,6 @@ void testInvalidBanknotesFile() {
     deleteFile("test_products.txt");
     deleteFile("test_quantities.txt");
 }
-
-
 
 
 

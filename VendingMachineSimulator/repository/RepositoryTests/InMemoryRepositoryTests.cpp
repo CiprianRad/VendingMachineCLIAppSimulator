@@ -35,9 +35,9 @@ void testRepositoryAddDuplicate() {
 
     try {
         repo.add(product2);
-        assert(false); // should not reach this
+        assert(false);
     } catch (const repository::ProductAlreadyExistsException&) {
-        assert(true); // expected
+        assert(true);
     }
 }
 
@@ -58,9 +58,9 @@ void testRepositoryRemoveNonexistent() {
 
     try {
         repo.remove("Z9");
-        assert(false); // should not reach this
+        assert(false);
     } catch (const repository::ProductNotFoundException&) {
-        assert(true); // expected
+        assert(true);
     }
 }
 
@@ -86,7 +86,7 @@ void testRepositoryUpdateNonexistent() {
     auto product = std::make_shared<domain::GenericProduct>("E5", "Tea", 120);
     try {
         repo.update("E5", product);
-        assert(false); // should not reach this
+        assert(false);
     } catch (const repository::ProductNotFoundException&) {
         assert(true);
     }

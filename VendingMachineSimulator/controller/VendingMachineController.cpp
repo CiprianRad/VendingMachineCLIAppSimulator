@@ -24,30 +24,6 @@ void controller::VendingMachineController::loadBanknotes() {
 
 }
 
-// void controller::VendingMachineController::loadProductQuantities() {
-//     std::ifstream file(productsFileName);
-//     if (!file.is_open()) {
-//         throw FileOpenException(productsFileName);
-//     }
-//
-//     std::string productId;
-//     int quantity;
-//
-//     while (file >> productId >> quantity) {
-//         if (quantity < 0) {
-//             throw InvalidQuantityException(); // You already have this exception
-//         }
-//
-//         // Make sure the product exists in the service before setting quantity
-//         if (!service->isProductAvailable(productId)) {
-//             throw ProductUnavailableException(productId);
-//         }
-//
-//         inventory[productId] = quantity;
-//     }
-//
-//     file.close();
-// }
 
 void controller::VendingMachineController::loadProductQuantities() {
     std::ifstream file(productsFileName);
@@ -74,20 +50,16 @@ int controller::VendingMachineController::getProductQuantity(const std::string& 
         return (it != inventory.end()) ? it->second : 0;
     }
 
-    // Restock product quantity in the machine
 void controller::VendingMachineController::restockProduct(std::shared_ptr<domain::Product> product, int quantity) {
     if (quantity <= 0) {
         throw InvalidQuantityException();
     }
 
-    // Restock in service (repository)
     try {
         service->restockProduct(product);
     } catch (const repository::ProductAlreadyExistsException&) {
-        // Product already exists in repo, so no need to add again
-    }
 
-    // Update inventory quantity
+    }
     inventory[product->getId()] += quantity;
 }
 
@@ -131,7 +103,6 @@ std::vector<std::pair<int, int>> controller::VendingMachineController::buyProduc
     return change;
 }
 
-// Add banknotes (simplistic: assume paidAmount is given as a single banknote denomination)
 void controller::VendingMachineController::addBanknotes(int amount) {
     for (auto& [denom, qty] : banknotes) {
         if (denom == amount) {

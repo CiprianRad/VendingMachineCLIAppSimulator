@@ -36,27 +36,6 @@ void domain::GenericProduct::setName(const std::string &value) {
 }
 
 
-// std::ostream & operator<<(std::ostream &os, const domain::GenericProduct &product) {
-//     std::cout << "ID: " << product.getId() << std::endl;
-//     std::cout << "Name: " << product.getName() << std::endl;
-//     std::cout << "Price: " << product.getPrice() << std::endl;
-//     return os;
-// }
-//
-// std::istream & operator>>(std::istream &is, domain::GenericProduct &product) {
-//     std::string id;
-//     std::string name;
-//     int price;
-//     std::cout << "Enter ID: ";
-//     is >> id;
-//     std::cout << "Enter Name: ";
-//     is >> name;
-//     std::cout << "Enter Price: ";
-//     is >> price;
-//     product = domain::GenericProduct(id, name, price);
-//     return is;
-// }
-
 
 namespace domain {
     std::ostream& operator<<(std::ostream& os, const domain::GenericProduct& product) {
@@ -74,7 +53,7 @@ namespace domain {
         std::getline(is, id);
         std::getline(is, name);
         is >> price;
-        is.ignore(); // ignore trailing newline after int
+        is.ignore();
 
         product = domain::GenericProduct(id, name, price);
         return is;
